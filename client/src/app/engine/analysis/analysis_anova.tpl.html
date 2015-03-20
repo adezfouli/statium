@@ -1,0 +1,83 @@
+<div>
+    <div ng-if="anova.getBContrasts().length !== 0" class="panel-heading">
+        Between Contrasts
+    </div>
+    <div ng-if="anova.getBContrasts().length === 0">
+        <h4 class="text-center list-group-item-danger">
+            {{localizedMessages.get('NO_BETWEEN_CONTRAST', null)}}
+        </h4>
+    </div>
+
+    <table ng-if="anova.getBContrasts().length !== 0" class="table table-condensed table-bordered table-hover">
+        <thead>
+        <tr class="info">
+            <th>Source</th>
+            <th>SS</th>
+            <th>DF</th>
+            <th>MS</th>
+            <th>F</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="cont in anova.getBContrasts()">
+            <td>B{{$index + 1}}</td>
+            <td>{{anova.getSS($index, null)| number}}</td>
+            <td>{{anova.getDF()| number}}</td>
+            <td>{{anova.getMS($index, null)| number}}</td>
+            <td>{{anova.getF($index, null)| number}}</td>
+        </tr>
+        <tr class="danger">
+            <td><b>Error</b></td>
+            <td>{{anova.getBetweenSSError()| number}}</td>
+            <td>{{anova.getErrorDF()| number}}</td>
+            <td>{{anova.getBetweenMSError()| number}}</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div ng-if="anova.getWContrasts().length !== 0" class="panel-heading">
+        Within Contrasts
+    </div>
+
+    <div ng-if="anova.getWContrasts().length === 0">
+        <h4 class="text-center list-group-item-danger">
+            {{localizedMessages.get('NO_WITHIN_CONTRAST', null)}}
+        </h4>
+    </div>
+    <table ng-if="anova.getWContrasts().length !== 0" class="table table-condensed table-bordered table-hover">
+        <thead>
+        <tr class="info">
+            <th>Source</th>
+            <th>SS</th>
+            <th>DF</th>
+            <th>MS</th>
+            <th>F</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="cont in anova.getWContrasts() ">
+        <tr>
+            <td>W{{$index + 1}}</td>
+            <td>{{anova.getSS(null, $index)| number}}</td>
+            <td>{{anova.getDF()| number}}</td>
+            <td>{{anova.getMS(null, $index)| number}}</td>
+            <td>{{anova.getF(null, $index)| number}}</td>
+        </tr>
+        <tr ng-repeat="cont2 in anova.getBContrasts()">
+            <td>B{{$index + 1}}W{{$parent.$index + 1}}</td>
+            <td>{{anova.getSS($index, $parent.$index)| number}}</td>
+            <td>{{anova.getDF()| number}}</td>
+            <td>{{anova.getMS($index, $parent.$index)| number}}</td>
+            <td>{{anova.getF($index, $parent.$index)| number}}</td>
+        </tr>
+
+        <tr class="danger">
+            <td><b>Error</b></td>
+            <td>{{anova.getWithinSSError($index)| number}}</td>
+            <td>{{anova.getErrorDF()| number}}</td>
+            <td>{{anova.getWithinMSError($index)| number}}</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

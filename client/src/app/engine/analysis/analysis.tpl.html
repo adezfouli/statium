@@ -1,0 +1,68 @@
+<div class="container-fluid col-md-6 col-md-offset-3">
+
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a ng-click="showContrasts = !showContrasts">
+                        Contrasts
+                        <div ng-show="showContrasts" style="display: inline"> [-] </div>
+                        <div ng-show="!showContrasts" style="display: inline"> [+] </div>
+                    </a>
+                </h4>
+            </div>
+            <div class="panel-collapse" ng-class="{collapse: !showContrasts}">
+
+                <h4 class="text-center">
+                    Between Contrasts
+                </h4>
+                <contrast_input model="contrastData.betweens" factors="contrastData.betweenFactors" symbol="'B'"></contrast_input>
+                <h4 class="text-center">
+                    Within Contrasts
+                </h4>
+                <contrast_input model="contrastData.withins" factors="contrastData.withinFactors" symbol="'W'"></contrast_input>
+
+                <div class="table-bordered list-group-item list-group-item-info">
+                    <button class="btn btn-primary" ng-click="analyze()">Analyze</button>
+                </div>
+
+            </div>
+        </div>
+            <div  ng-if="anova.hasData" class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a ng-click="showAnalysis = !showAnalysis">
+                            Analysis of Variance
+                            <div ng-show="showAnalysis" style="dlisplay: inline"> [-] </div>
+                            <div ng-show="!showAnalysis" style="display: inline"> [+] </div>
+                        </a>
+                    </h4>
+                </div>
+                <div class="panel-collapse" ng-class="{collapse: !showAnalysis}">
+                    <div ng-if="anova.hasData">
+                        <div ng-include="'engine/analysis/analysis_anova.tpl.html'"></div>
+                    </div>
+                </div>
+            </div>
+            <div  ng-if="anova.hasData" class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a ng-click="showAnalysis = !showAnalysis">
+                            Confidence Intervals
+                            <div ng-show="showAnalysis" style="display: inline"> [-] </div>
+                            <div ng-show="!showAnalysis" style="display: inline"> [+] </div>
+                        </a>
+                    </h4>
+                </div>
+                <div class="panel-collapse" ng-class="{collapse: !showAnalysis}">
+                    <div ng-if="anova.hasData">
+                        <div ng-include="'engine/analysis/analysis_ci.tpl.html'"></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+

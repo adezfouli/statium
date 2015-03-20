@@ -1,0 +1,72 @@
+<div class="container-fluid col-md-6 col-md-offset-3">
+
+
+    <div>
+        <div class="panel panel-primary" style="overflow: auto">
+            <div class="panel-heading panel-title">
+
+                Data Summary Table
+            </div>
+            <div ng-if="within.length === 0 || between.length === 0">
+                <h4 class="text-center">
+                    {{localizedMessages.get('NO_DATA_AVAILABLE', null)}}
+                </h4>
+            </div>
+
+
+            <table ng-if="within.length !== 0" class="table table-condensed table-bordered table-hover">
+                <thead>
+                <tr class="info">
+                    <th>Group</th>
+                    <th>Measurement</th>
+                    <th>Mean</th>
+                    <th>SD</th>
+                    <th>SEM</th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="w in within ">
+                <tr ng-repeat="b in between">
+                    <td>{{b}}</td>
+                    <td>{{w}}</td>
+                    <td>{{descriptive.getMeanOfFeatureGroup(w, b) | number}}</td>
+                    <td>{{descriptive.getSDFeatureGroup(w, b) | number}}</td>
+                    <td>{{descriptive.getSEMOfFeatureGroup(w, b) | number}}</td>
+                </tr>
+                <tr class="danger">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="panel panel-primary" style="overflow: auto">
+        <div class="panel-heading panel-title">
+            Mean and SEM
+        </div>
+
+        <div ng-if="within.length === 0 || between.length === 0">
+            <h4 class="text-center">
+                {{localizedMessages.get('NO_DATA_AVAILABLE', null)}}
+            </h4>
+        </div>
+
+        <div ng-if="within.length !== 0 && between.length !== 0" class="panel-body">
+
+            <div ng-if="descriptive" class="panel-body">
+                <div visualize descriptive="descriptive" withins="within" betweens="between" chart-type="'line'"></div>
+            </div>
+
+            <div ng-if="descriptive" class="panel-body">
+                <div visualize descriptive="descriptive" withins="within" betweens="between" chart-type="'bar'"></div>
+            </div>
+            </div>
+    </div>
+
+</div>

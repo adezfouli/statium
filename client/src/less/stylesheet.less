@@ -1,0 +1,31 @@
+/*!
+ * Bootstrap v2.1.1
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licen
+ ses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ */
+//@import "variables.less";
+@import "../../vendor/bootstrap/less/bootstrap.less";
+@import "../../vendor/bootstrap/less/theme.less";
+
+@import "../../vendor/handsontable/jquery.handsontable.full.less";
+
+.text-error {
+  color: red;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+/* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+a:hover {
+    cursor:pointer;
+}

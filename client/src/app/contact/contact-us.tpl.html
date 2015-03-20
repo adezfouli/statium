@@ -1,0 +1,38 @@
+<div class="container-fluid col-md-6 col-md-offset-3">
+    <form name="form" role="form" novalidate>
+        <a href=""  class="list-group-item active"><h3>Contact us</h3></a>
+        <ul class="list-group">
+            <li class="list-group-item">
+
+                <div class="form-group" ng-class="{ 'has-error': showError('email')}">
+                    <label>Email address (required)</label>
+                    <input type="email" class="form-control" required style="width: 50%" ng-model="user.email"
+                           name="email">
+                    <span class="help-inline text-error"
+                          ng-show="showError('email')">{{localizedMessages.get('EMAIL_IS_INVALID', null)}} </span>
+
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': showError('name')}">
+                    <label>Name (required)</label>
+                    <input type="text" class="form-control" required style="width: 50%" ng-model="user.name"
+                           name="name">
+                    <span class="help-inline text-error"
+                          ng-show="showError('name')"> {{localizedMessages.get('NAME_CANNOT_BE_NULL', null)}}</span>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': showError('message')}">
+                    <label>Message (required)</label>
+                    <textarea class="form-control" rows="20" ng-model="user.message" name="message" required></textarea>
+                    <span class="help-inline text-error"
+                          ng-show="showError('message')"> {{localizedMessages.get('MESSAGE_CANNOT_BE_NULL', null)}}</span>
+                </div>
+            </li>
+            <li class="list-group-item list-group-item-info">
+                <button ng-if="!wait" type="submit" class="btn btn-primary"
+                        ng-click="submit()">Submit
+                </button>
+                <button ng-if="wait" class="btn btn-primary" ng-disabled='true'>Please wait...</button>
+            </li>
+        </ul>
+
+    </form>
+</div>

@@ -1,0 +1,36 @@
+<div ng-if="factors.length === 0">
+    <h4 class="text-center list-group-item-danger">
+        {{localizedMessages.get('NO_FACTOR_AVAILABLE', null)}}
+    </h4>
+</div>
+
+<table ng-if="factors.length !== 0" class="table table-condensed table-hover table-bordered">
+    <thead>
+    <tr class="info">
+        <th>
+            #
+        </th>
+        <th ng-repeat="c1 in factors">
+            {{c1}}
+        </th>
+        <th style="width: 10%">
+        <button style="width: 100%" class="btn btn-success" tooltip="{{localizedMessages.get('ADD_CONTRAST', {})}}" ng-click="addItem()">
+            New Contrast
+        </button>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in model">
+        <td>{{symbol}}{{$index + 1}}</td>
+        <td ng-repeat = "c2 in factors">
+            <input type="number" step="any" ng-model="item[c2]" style="width: 100%"/>
+        </td>
+        <td style="width: 10%">
+            <button style="width: 100%" class="btn btn-danger" ng-click="deleteItem(item)" tooltip="{{localizedMessages.get('REMOVE_CONTRAST', {})}}">
+               Remove
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>

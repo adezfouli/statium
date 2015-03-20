@@ -1,0 +1,49 @@
+<div>
+        <div class="panel-heading">
+            95% Raw confidence intervals (scaled in dependent variable units)
+        </div>
+
+        <div ng-if = "anova.getBContrasts().length === 0 && anova.getWContrasts().length === 0">
+            <h4 class="text-center list-group-item-danger">
+                {{localizedMessages.get('NO_CONTRAST_AVAILABLE', null)}}
+            </h4>
+        </div>
+        <table  ng-if = "anova.getBContrasts().length !== 0 || anova.getWContrasts().length !== 0"
+                class="table table-condensed table-bordered table-hover">
+            <thead>
+            <tr class="info">
+                <th>Source</th>
+                <th>Value</th>
+                <th>SE</th>
+                <th>CI lower</th>
+                <th>CI upper</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr ng-repeat="cont in anova.getBContrasts()">
+                <td>B{{$index + 1}}</td>
+                <td>{{anova.getValue($index, null)| number}}</td>
+                <td>{{anova.getSE($index, null)| number}}</td>
+                <td>{{anova.getConfidenceIntervals($index, null)[0]| number}}</td>
+                <td>{{anova.getConfidenceIntervals($index, null)[1]| number}}</td>
+            </tr>
+            </tbody>
+            <tbody   ng-repeat="cont in anova.getWContrasts()">
+            <tr class="success">
+                <td>W{{$index + 1}}</td>
+                <td>{{anova.getValue(null, $index)| number}}</td>
+                <td>{{anova.getSE(null, $index)| number}}</td>
+                <td>{{anova.getConfidenceIntervals(null, $index)[0]| number}}</td>
+                <td>{{anova.getConfidenceIntervals(null, $index)[1]| number}}</td>
+            </tr>
+            <tr ng-repeat="cont2 in anova.getBContrasts()">
+                <td>B{{$index + 1}}W{{$parent.$index + 1}}</td>
+                <td>{{anova.getValue($index, $parent.$index)| number}}</td>
+                <td>{{anova.getSE($index, $parent.$index)| number}}</td>
+                <td>{{anova.getConfidenceIntervals($index, $parent.$index)[0]| number}}</td>
+                <td>{{anova.getConfidenceIntervals($index, $parent.$index)[1]| number}}</td>
+            </tr>
+            </tbody>
+
+        </table>
+</div>

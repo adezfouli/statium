@@ -1,0 +1,51 @@
+<div ng-controller="HeaderCtrl">
+    <div ng-if="isLoaded()">
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">STATIUM</a>
+                </div>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{active: isActive('/data')}"><a href="#" ng-click="data()"> Data </a></li>
+                    <li ng-class="{active: isActive('/summary')}"><a href="#" ng-click="summary()"> Summary </a></li>
+                    </li>
+                    <li ng-class="{active: isActive('/analyze')}"><a href="#" ng-click="analyze()"> Analyze </a></li>
+                </ul>
+                <ul  class="nav navbar-nav navbar-right">
+                    <li ng-class="{active: isActive('/help')}"><a href="#" ng-click="help()"> Help </a></li>
+                    <li ng-class="{active: isActive('/contact-us')}"><a href="#" ng-click="contact_us()"> Contact us </a>
+                    <li ng-class="{active: isActive('/about')}"><a href="#" ng-click="about()"> About </a>
+                </ul>
+                <!--<div ng-if="!isAuthenticated() && !isActive('/login')">-->
+                    <!--<div class=" pull-right ">-->
+
+                        <!--<button class="btn btn-success navbar-btn" ng-click="register()">-->
+                            <!--Sing up-->
+                        <!--</button>-->
+                    <!--</div>-->
+                    <!--<div class="pull-right" login-toolbar></div>-->
+                <!--</div>-->
+
+
+
+            </div>
+        </div>
+    </nav>
+
+    <div ng-include="'notifications.tpl.html'" class="container-fluid"
+         ng-show="notifications.getCurrent().length"></div>
+
+
+</div>
+</div>

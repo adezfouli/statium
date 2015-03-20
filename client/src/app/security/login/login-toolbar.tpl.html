@@ -1,0 +1,18 @@
+<form class="navbar-form" name="form" role="form">
+    <input class="form-control" type="email" ng-model="user.email" required placeholder="email address"/>
+    <input class="form-control" type="password" ng-model="user.password" required placeholder="password"/>
+    <button class="btn btn-primary" ng-click="login()" ng-disabled='form.$invalid'>
+        Sing in
+    </button>
+    <br/>
+
+    <div class="checkbox">
+        <label class="navbar-text">
+            <input type="checkbox" ng-model="rememberMe"> Keep me signed in
+        </label>
+    </div>
+    <a class="navbar-text" href="#" ng-click="password_request()"> Forgotten your password? </a>
+
+
+</form>
+
