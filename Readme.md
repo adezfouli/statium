@@ -3,7 +3,7 @@ Statium's mission is to provide an easy to use tool for planned contrast analysi
 
 ## Frameworks
 Front-end component of Statium is based on [Angular.js](https://angularjs.org/)
-Back-end component is based on [Ruby on Rails](http://rubyonrails.org/) 
+Back-end component is based on [Ruby on Rails](http://rubyonrails.org/). 
 
 ## In action
 Statium deployed on Heroku can be accessed [here](http://statium.herokuapp.com/about).
